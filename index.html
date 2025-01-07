@@ -22,15 +22,26 @@
     <link rel="canonical" href="https://www.techfort.ca">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.0/css/line.css" rel="stylesheet">
+
+    <link
+    href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    rel="stylesheet"
+/>
 
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="popup.css">
-    <link rel="stylesheet" href="mediaquiries.css">
+    <link rel="stylesheet" href="process.css">
+    <link rel="stylesheet" href="sub.css">
+    <link rel="stylesheet" href="loader.css"> 
+    <link rel="stylesheet" href="mediaquiries.css"> 
     <link rel="icon" type="image/x-icon" href="./img/favicon-16x16.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
     <meta name="google-site-verification" content="jKpUmu-O4yHlv10kwpoUZ9i04EeweC58g62YTZK7Z3s" />
 </head>
+
 <style>
     .navbar-button:hover{
         background-color: rgb(13, 13, 13); 
@@ -39,7 +50,44 @@
       background:black;  
     }
 </style>
+
 <body>
+
+    <!-- loader code html  -->
+
+<!-- Loader container -->
+<div class="loader-container" id="loaderContainer">
+    <!-- Loader image -->
+    <img src="../img/loader.svg" alt="Loader" class="loader-img">
+  </div>  
+  <script>
+    function showloader(){
+  // Get the loader container element
+  var loaderContainer = document.getElementById('loaderContainer');
+      // Display the loader container
+      loaderContainer.style.display = 'block';
+  
+      // Hide the loader after 2 seconds
+      setTimeout(function() {
+        // Hide the loader container
+        loaderContainer.style.display = 'none';
+      }, 200);
+    
+    } ;
+    window.onload=showloader;
+    window.onscroll = function () {
+    if (window.scrollY >= 50 && window.scrollY <= 100) {
+        showloader();
+    }
+    else if (window.scrollY >=110 && window.scrollY <= 150) {
+        showloader();
+    }
+    else if (window.scrollY >=180 && window.scrollY <= 210) {
+        showloader();
+    }
+};
+    </script>
+    
     <!-- <header> -->
         <div class="popup-screen">
             <div class="popup-box">
@@ -53,25 +101,54 @@
                 <!-- <a href="#" class="btn close-btn">Ok</a> -->
             </div>
         </div>
+
         <nav class="navbar" id="top">
             <div class="navbar-logo">
-                <!-- <span class="lg">T</span>ech <span>Fort</span>
-                <sub>IT Experts</sub> -->
-                <img src="./img/logo.jpg" alt="techfrot logo">
+                <img src="./img/logo.jpg" alt="techfort logo">
             </div>
             <ul class="navbar-links">
-                <li><a class="active" href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li class="services-menu">
-                    <a href="#services">Services</a>
-                 
-                </li>
-                <li><a href="#clients-feedback" id="cli">Clients feedback?</a></li>
-                <!-- <li><a href="#contact">Contact us</a></li> -->
+                <li><a class="active" href="#home">
+                    
+                    <i class="fas fa-home"></i>
+                    Home</a></li>
+                <li>
+                    <a href="#about">About</a></li>
+                    <li class="services-menu">
+                        <a href="#services" data-toggle="submenu">Services</a>
+                        <ul class="submenu">
+                            <!-- Group 1 -->
+                            <div class="submenu-group">
+                                <li><a href="#services" data-scroll="services">Application development</a></li>
+                                <li><a href="#services" data-scroll="services">Software development</a></li>
+                                <li><a href="#services" data-scroll="services">Custom Websites</a></li>
+                                <li><a href="#services" data-scroll="services">E-commerce website design & development</a></li>
+                                <li><a href="#services" data-scroll="services">CMS Systems</a></li>
+                            </div>
+                            <!-- Group 2 -->
+                            <div class="submenu-group">
+                                <li><a href="#services" data-scroll="services">Custom Content Management System (CMS)</a></li>
+                                <li><a href="#services" data-scroll="services">Custom Coding</a></li>
+                                <li><a href="#services" data-scroll="services">Custom Designed</a></li>
+                                <li><a href="#services" data-scroll="services">Custom Email</a></li>
+                                <li><a href="#services" data-scroll="services">SEO</a></li>
+                            </div>
+                            <!-- Group 3 -->
+                            <div class="submenu-group">
+                                <li><a href="#services" data-scroll="services">Entire Website</a></li>
+                                <li><a href="#services" data-scroll="services">Front-End Web Developer</a></li>
+                                <li><a href="#services" data-scroll="services">Back-End Web Development</a></li>
+                                <li><a href="#services" data-scroll="services">Full Website Design</a></li>
+                                <li><a href="#services" data-scroll="services">Innovative Web</a></li>
+                            </div>
+                        </ul>
+                    </li>
+                    
+                    
+                <li><a href="#clients-feedback" >Clients Feedback</a></li> 
+                <li><a href="#process" id="cli">Our Process</a></li>
             </ul>
             <a href="#contact">
-
-                <button  class="navbar-button btt" >Contact us</button>
+                <button class="navbar-button btt">Contact us</button>
             </a>
             <div class="navbar-toggle">
                 <div class="bar"></div>
@@ -79,7 +156,7 @@
                 <div class="bar"></div>
             </div>
         </nav>
-
+        
     <!-- </header> -->
     <main>
 
@@ -143,19 +220,18 @@
                 <div class="feedback-item">
                     <img src="img/c1.png" alt="web client">
                     <div class="feedback-content">
-                        <h3>Nizaam Trucking                       </h3>
-                        <span>2023-05-20</span>
+                        <!-- <span>2023-05-20</span> -->
+                        <h3>Nizaam Trucking  </h3>
                         <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
                         <p>Great service and support throughout the project.
-
+                            
                             <br> Highly recommend them for <em> website design and development</em>                      </p>
-                    </div>
+                        </div>
                 </div>
                 <div class="feedback-item">
                     <img src="img/c2.png" alt="mobile app client">
                     <div class="feedback-content">
                         <h3> Emily Wilson</h3>
-                        <span>2023-06-15</span>
                         <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                         <p>
                             Transformed our data into actionable insights, thank you.
@@ -233,8 +309,10 @@
     </section>
 
         <!-- services  -->
-<section id="services" class="services">
-    <h2>Our <span>Services</span></h2>
+<!-- 
+        <section id="services" class="services">
+    <h2>What we <span>Offer</span></h2> 
+    <br>
     <p>Looking for the best IT solution services in Canada? Techfort leads the way with unmatched
         expertise and results. Elevate your brand with Techfort today!
     </p>
@@ -248,7 +326,7 @@
         </div>
         <div class="service-card">
             <div class="service-icon">
-                <i class="uil uil-megaphone"></i> <!-- Changed to 'uil-megaphone' -->
+                <i class="uil uil-megaphone"></i>
             </div>
             <h2>Digital Marketing</h2>
             <p>Enhance your online presence with our search engine marketing, PPC ads, social media marketing, SEO, SMO, and lead generation services.</p>
@@ -299,8 +377,310 @@
         </div>
     </div>
 </section>
+ --> 
+<section id="services" class="services-section">
+    <div class="container">
+      <h2>What we <span>Offer</span></h2>
+      <p>
+        Looking for the best IT solution services in Canada? Techfort leads the way with unmatched
+        expertise and results. Elevate your brand with Techfort today!
+      </p>
+      <br><br>
+      <div class="flip-card-container">
+        <!-- Card 1 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <i class="uil uil-desktop"></i>
+              <h3>Website Design</h3>
+              <button class="flip-button">Learn More</button>
+            </div>
+            <div class="flip-card-back">
+              <p>We provide mobile responsive and SEO-friendly website designs, static and dynamic web designs, as well as website audits and redesign services.</p>
+              <button class="flip-button-back">Go Back</button>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Card 2 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <i class="uil uil-megaphone"></i>
+              <h3>Digital Marketing</h3>
+              <button class="flip-button">Learn More</button>
+            </div>
+            <div class="flip-card-back">
+              <p>Enhance your brand's visibility with PPC ads, social media marketing, SEO, SMO, and lead generation services.</p>
+              <button class="flip-button-back">Go Back</button>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Card 3 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <i class="uil ">PHP</i> 
+                <h3>PHP Development</h3>
+              <button class="flip-button">Learn More</button>
+            </div>
+            <div class="flip-card-back">
+              <p>Build dynamic and feature-rich websites with custom PHP development tailored to your business needs.</p>
+              <button class="flip-button-back">Go Back</button>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Card 4 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <i class="uil uil-store"></i>
+              <h3>Point of Sale System</h3>
+              <button class="flip-button">Learn More</button>
+            </div>
+            <div class="flip-card-back">
+              <p>Develop and implement POS systems to streamline your business transactions and inventory management.</p>
+              <button class="flip-button-back">Go Back</button>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Card 5 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <i class="uil uil-file"></i>
+              <h3>Content Management System</h3>
+              <button class="flip-button">Learn More</button>
+            </div>
+            <div class="flip-card-back">
+              <p>Custom CMS solutions to help you easily manage and update your website content without technical knowledge.</p>
+              <button class="flip-button-back">Go Back</button>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Card 6 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <i class="uil uil-code-branch"></i>
+              <h3>Front-end & Back-end Development</h3>
+              <button class="flip-button">Learn More</button>
+            </div>
+            <div class="flip-card-back">
+              <p>Get robust and scalable front-end and back-end development for seamless and functional web applications.</p>
+              <button class="flip-button-back">Go Back</button>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Card 7 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <i class="uil uil-search"></i>
+              <h3>Search Engine Optimization</h3>
+              <button class="flip-button">Learn More</button>
+            </div>
+            <div class="flip-card-back">
+              <p>Boost your website's visibility and ranking with effective on-page and off-page SEO strategies.</p>
+              <button class="flip-button-back">Go Back</button>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Card 8 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <i class="uil uil-shopping-cart"></i>
+              <h3>E-Commerce Websites</h3>
+              <button class="flip-button">Learn More</button>
+            </div>
+            <div class="flip-card-back">
+              <p>Design and develop user-friendly e-commerce platforms to help you manage online sales efficiently.</p>
+              <button class="flip-button-back">Go Back</button>
+            </div>
+          </div>
+        </div>
+
+     <!-- Card 9 -->
+    <div class="flip-card">
+        <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <i class="fa-solid fa-code"></i>         
+             <h3>Custom Coding</h3>
+            <button class="flip-button">Learn More</button>
+        </div>
+        <div class="flip-card-back">
+            <p>Get tailored solutions with custom coding to meet your unique business requirements, ensuring scalability and efficiency.</p>
+            <button class="flip-button-back">Go Back</button>
+        </div>
+        </div>
+    </div>
+  
+  <!-- Card 10 -->
+    <div class="flip-card">
+        <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <i class="uil uil-envelope"></i> <!-- Icon for custom email -->
+            <h3>Custom Email Solutions</h3>
+            <button class="flip-button">Learn More</button>
+        </div>
+        <div class="flip-card-back">
+            <p>Develop personalized email solutions that integrate seamlessly with your systems for improved communication and branding.</p>
+            <button class="flip-button-back">Go Back</button>
+        </div>
+        </div>
+    </div>
+  
+  <!-- Card 11 -->
+    <div class="flip-card">
+        <div class="flip-card-inner">
+        <div class="flip-card-front">  
+            <i class="fa-solid fa-desktop"></i>      
+                 <h3>All type Software Development</h3>
+            <button class="flip-button">Learn More</button>
+        </div>   
+        <div class="flip-card-back">
+            <p>Create robust, scalable, and user-centric software solutions tailored to your business processes and goals.</p>
+            <button class="flip-button-back">Go Back</button>
+        </div>
+        </div>
+    </div>
+  
+  <!-- Card 12 -->
+    <div class="flip-card">
+        <div class="flip-card-inner">
+        <div class="flip-card-front">  
+            <i class="uil uil-wordpress"></i>
+                 <h3>Wordpress sites</h3> 
+            <button class="flip-button">Learn More</button>
+        </div>   
+        <div class="flip-card-back">
+            <p>Custom WordPress site development, theme customization, and plugin integration to enhance your website functionality and user experience.</p>
+            <button class="flip-button-back">Go Back</button>
+        </div>
+        </div>
+    </div>
+    
+      </div>
+    </div>
+  </section>
+    
+<!-- Process Section -->
+ <div id="process"></div>
+ <div id="process"></div>
+<section id="process" class="process-section">
+    <div class="container">
+        <h2>Our <span>Process</span></h2>
+        <div class="timeline">
+            <!-- Planning -->
+            <div class="timeline-item">
+                <div class="icon">
+                    <i class="uil uil-calendar-alt"></i>
+                </div>
+                <h3>Planning</h3>
+                <p>Understanding what you want out of your site and how you plan to implement it.</p>
+                <i class="uil uil-arrow-right"></i>
+  
+            </div>
+            <!-- Arrow -->
+            <div class="arrow">
+                <i class="uil uil-arrow-right"></i>
+            </div>
+            <!-- Design & Development -->
+            <div class="timeline-item">
+                <div class="icon">
+                    <i class="uil uil-desktop"></i>
+                </div>
+                <h3>Design & Development</h3>
+                <p>We will create a beautiful, affordable website design for your creative marketing project.</p>
+   
+            </div>
+            <!-- Arrow -->
+            <div class="arrow">
+                <i class="uil uil-arrow-right"></i>
+            </div>
+            <!-- SEO -->
+            <div class="timeline-item">
+                <div class="icon">
+                    <i class="uil uil-search"></i>
+                </div>
+                <h3>SEO</h3>
+                <p>The goal of on-page and off-page optimization is to generate a theme consistent with your targeted keywords.</p>
+                <i class="uil uil-arrow-right"></i>
+  
+            </div>
+            <!-- Arrow -->
+            <div class="arrow">
+                <i class="uil uil-arrow-right"></i>
+            </div>
+            <!-- Launch -->
+            <div class="timeline-item">
+                <div class="icon">
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+                <h3>Testing & Launch</h3>
+                <p>After successful testing, the product is delivered/deployed to the customer for their use.</p>
+   
+            </div>
+            <!-- Arrow -->
+            <div class="arrow">
+                <i class="uil uil-arrow-right"></i>
+            </div>
+            <!-- Maintenance -->
+            <div class="timeline-item">
+                <div class="icon">
+                    <i class="uil uil-setting"></i>
+                </div>
+                <h3>Maintenance</h3>
+                <p>It is an important step that ensures your site works efficiently all the time.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- customer requirements  -->
+<section id="custom-requirements" class="custom-requirements-section">
+    <div class="container">
+        <h2>Customer<span> Requirements</span></h2>
+        <p>
+            <span class="hide">
+            Listed below are our Standard Web development prices and service packages. One of these options may suit your business goals and budget and offer you a great return on your online business investment. 
+            However,  
+        </span>
+                We do offer custom web/mobile apps development and requests.Please contact us now for a personalized online business solution that fits your needs.</p>
+    </div>
+    <div class="statistics">
+        <div class="stat-item">
+            <i class="fas fa-medal"></i>
+            <h3><span class="counter" data-target="99">05</span>%</h3>
+            <p>SATISFIED CUSTOMERS</p> 
+        </div>
+        <div class="stat-item">
+            <i class="fas fa-trophy"></i>
+            <h3><span class="counter" data-target="18">1</span></h3>
+            <p>WINNING AWARDS</p>
+        </div>
+        <div class="stat-item">
+            <i class="fas fa-layer-group"></i> 
+            <h3><span class="counter" data-target="36">1</span></h3>
+            <p>SEO PROJECTS</p>
+        </div>
+        <div class="stat-item">
+            <i class="fas fa-laptop-code"></i>
+            <h3><span class="counter" data-target="87">1</span></h3>
+            <p>WEBSITE DEVELOPED</p>
+        </div>
+    </div>
+</section>
 
 
+        <!-- contact section  -->
         <section id="contact" class="contact-section">
             <div class="container">
 
@@ -365,6 +745,7 @@
         </a>
         
     </footer>
+
 
     <script type="text/javascript"
     src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
