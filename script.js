@@ -79,10 +79,10 @@ const leftBtn = document.querySelector('.left-btn');
 const rightBtn = document.querySelector('.right-btn');
 
 let currentIndex = 0;
-const itemsToShow = 3; // Number of items to show at once
+const itemsToShow = 2; // Number of items to show at once
 const itemWidth = feedbackItems[0].offsetWidth + 20; // Item width including margin
 const totalItems = feedbackItems.length;
-
+ 
 function updateSliderPosition() {
     const offset = -currentIndex * itemWidth;
     feedbackContainer.style.transform = `translateX(${offset}px)`;
@@ -106,8 +106,8 @@ function slideLeft() {
     }
   }
   function slideRightSlow() {
-    if (currentIndex < totalItems - 1) {
-      currentIndex += 1;
+    if (currentIndex < totalItems - 3) {
+      currentIndex += 1;  
       updateSliderPosition();
     } else {
       currentIndex = 0; // Reset currentIndex to 0 when reaching the end
@@ -156,8 +156,109 @@ document.addEventListener("DOMContentLoaded", function () {
   const submenu = document.querySelector(".services-menu .submenu");
 
   // Add click event to toggle submenu
-  servicesMenu.addEventListener("click", function (e) {
+  submenu.addEventListener("click", function (e) {
       e.preventDefault(); // Prevent default behavior of the link
       this.classList.toggle("active"); // Toggle the active class
   });
 });
+
+// Counter Animation for Numbers
+document.addEventListener("DOMContentLoaded", function () {
+  const counters = document.querySelectorAll(".counter");
+  const speed = 90; // Adjust speed as needed
+  let hasRun = false; // To ensure the counter only runs once
+
+  const runCounter = () => {
+      counters.forEach(counter => {
+          const target = +counter.getAttribute("data-target");
+          const updateCount = () => {
+              const current = +counter.innerText;
+              const increment = Math.ceil(target / speed);
+
+              if (current < target) {
+                  counter.innerText = current + increment;
+                  setTimeout(updateCount, 40);
+              } else {
+                  counter.innerText = target;
+              }
+          };
+
+          updateCount();
+      });
+  };
+
+  // Intersection Observer API
+  const section = document.querySelector(".custom-requirements-section");
+
+  const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+          if (entry.isIntersecting && !hasRun) {
+              hasRun = true; // Prevent running multiple times
+              runCounter();
+              observer.unobserve(entry.target); // Stop observing after animation runs
+          }
+      });
+  });
+
+  observer.observe(section);
+});
+
+
+// flip 
+document.addEventListener("DOMContentLoaded", function () {
+  const flipButtons = document.querySelectorAll(".flip-button");
+  const backButtons = document.querySelectorAll(".flip-button-back");
+
+  flipButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const card = button.closest(".flip-card-inner");
+      card.style.transform = "rotateY(180deg)";
+    });
+  });
+
+  backButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const card = button.closest(".flip-card-inner");
+      card.style.transform = "rotateY(0deg)";
+    });
+  });
+});
+
+   
+// latest sub
+document.addEventListener("DOMContentLoaded", function () {
+  const servicesLink = document.querySelector('[data-toggle="submenu"]');
+  const submenu = document.querySelector('.services-menu .submenu');
+  const submenuItems = submenu.querySelectorAll('a');
+
+  // Toggle submenu visibility when clicking on the main link
+  servicesLink.addEventListener('click', function (e) {
+      e.preventDefault(); // Prevent default action (navigation)
+      submenu.classList.toggle('active'); // Toggle visibility
+      e.stopPropagation(); // Stop event propagation
+  });
+
+  // Hide the submenu when clicking outside of it
+  document.addEventListener('click', function (e) {
+      if (!submenu.contains(e.target) && !servicesLink.contains(e.target)) {
+          submenu.classList.remove('active'); // Hide submenu
+      }
+  });
+
+  // Smooth scroll and hide submenu when clicking on a submenu item
+  submenuItems.forEach(item => {
+      item.addEventListener('click', function (e) {
+          const target = e.target.closest('a');
+          if (target && target.getAttribute('href').startsWith('#')) {
+              e.preventDefault();
+              const sectionId = target.getAttribute('href').substring(1);
+              const section = document.getElementById(sectionId);
+              if (section) {
+                  section.scrollIntoView({ behavior: 'smooth' }); // Smooth scroll
+              }
+              submenu.classList.remove('active'); // Hide submenu
+          }
+      });
+  });
+});
+
