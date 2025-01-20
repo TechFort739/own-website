@@ -1,0 +1,272 @@
+/* General Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    color: #0b0b0b;
+    position: relative;
+    z-index: 10;
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+}
+
+.navbar-links li {
+    position: relative;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.navbar-links a:hover {
+    color: var(--secondory-color);
+}
+
+/* Submenu Styles */
+.services-menu {
+    position: relative;
+}
+
+.services-menu .submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 600px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.services-menu:hover .submenu {
+    display: flex;
+}
+.submenu-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; 
+    width: 90%; /* Adjust this to fit two groups per row */
+}
+
+.submenu a {
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 5px;
+}
+
+.submenu a:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 5px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .navbar-links {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .services-menu .submenu {
+        position: relative;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .submenu-group {
+        width: 100%;
+    }
+}
+
+
+/* alternate  */
+/* Add this to your existing CSS */
+
+/* Custom bullets for submenu */
+.submenu li {
+    list-style: none; /* Remove default bullets */
+    position: relative;
+    padding-left: 20px; /* Space for custom bullet */
+}
+
+/* Add a custom bullet */
+.submenu li::before {
+    content: "•"; /* You can use a Unicode character or any symbol */
+    font-size: 1.2rem; /* Adjust size */
+    color: var(--primary-color); /* Set color to match your theme */
+    position: absolute;
+    left: 0; /* Position bullet at the start of the text */
+    top: 50%;
+    transform: translateY(-50%); /* Vertically center the bullet */
+}
+
+/* Add hover effect for bullets */
+.submenu li:hover::before {
+    color: var(--secondory-color);
+    transform: translateY(-50%) scale(1.3); /* Slightly enlarge on hover */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Alternate bullets with icons */
+.submenu li:nth-child(odd)::before {
+    content: "★"; /* Example: Star icon for odd items */
+    color: var(--secondory-color);
+    color: gold;
+}
+.submenu li:nth-child(even)::before {
+    content: "★"; /* Example: Star icon for odd items */
+    color: var(--primary-color);
+    color: gold;
+}
+
+
+
+.submenu {
+    display: flex;
+    border: 2px solid red;
+}
+
+/* latest  */
+/* Show submenu on mobile */
+@media (max-width: 768px) {
+    .services-menu .submenu {
+        display: block;
+        position: static; /* Make submenu flow in the document */
+        flex-direction: column;
+        width: 100%; /* Take full width */
+        background-color: white;
+        border: none;
+        box-shadow: none;
+    }
+
+    .submenu-group {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .submenu a {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .submenu a:hover {
+        background-color: var(--primary-color);
+        color: white;
+    }
+}
+
+/* Submenu hidden by default */
+.services-menu .submenu {
+    display: none; /* Hide by default */
+}
+
+/* Submenu visible when "active" class is added */
+.services-menu .submenu.active {
+    display: flex;
+     /* Or block, depending on layout */
+}
+
+
+/* Show submenu on mobile with scrollable content */
+@media (max-width: 768px) {
+    .submenu{
+        display: flex; 
+        flex-direction: row; 
+        background-color: aqua;
+    } 
+    .services-menu .submenu {
+        /* Make submenu scrollable */
+        max-width: 600px;    
+        max-height: 300px; /* Set a max height for the submenu */
+        overflow-y: scroll; /* Enable vertical scrolling */
+        display: flex;
+        flex-direction: row; 
+    }
+
+    .submenu-group {
+        /* flex-direction: column; */
+        gap: 10px;
+        width: 100%;
+    }
+
+    .submenu a {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .submenu a:hover {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    /* Prevent body scroll when submenu is open */
+    body.no-scroll {
+        overflow: hidden; /* Disable body scroll */
+    }
+    hide{
+        display: none;
+    }
+}
+ 
+
+/* Submenu hidden by default */
+.services-menu .submenu {
+    display: none; /* Hide submenu initially */
+    position: absolute; /* Position submenu correctly */
+    top: 100%; /* Place submenu below parent */
+    left: 0;
+    width: 600px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Show submenu on hover */
+.services-menu:hover .submenu {
+    display: flex; /* Make submenu visible */
+}
+
+/* Submenu hidden by default */
+.services-menu .submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 600px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+    flex-wrap: wrap;
+    gap: 10px;
+    transform: translateX(-100%); /* Default hidden with transform */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Submenu visible when active */
+.services-menu .submenu.active {
+    display: flex;
+    transform: translateX(0); /* Slide into view */
+}
+
+/* Ensure submenu smoothly transitions */
+.services-menu .submenu.active {
+    transition: transform 0.3s ease-in-out;
+}
