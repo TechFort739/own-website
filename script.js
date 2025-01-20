@@ -224,77 +224,41 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+   
+// latest sub
+document.addEventListener("DOMContentLoaded", function () {
+  const servicesLink = document.querySelector('[data-toggle="submenu"]');
+  const submenu = document.querySelector('.services-menu .submenu');
+  const submenuItems = submenu.querySelectorAll('a');
 
-// sub menue 
-    document.addEventListener("DOMContentLoaded", function () {
-        const servicesLink = document.querySelector('[data-toggle="submenu"]');
-        const submenu = document.querySelector('.services-menu .submenu');
+  // Toggle submenu visibility when clicking on the main link
+  servicesLink.addEventListener('click', function (e) {
+      e.preventDefault(); // Prevent default action (navigation)
+      submenu.classList.toggle('active'); // Toggle visibility
+      e.stopPropagation(); // Stop event propagation
+  });
 
-        servicesLink.addEventListener('click', function (e) {
-            e.preventDefault(); // Prevent the default action (navigation)
-            submenu.classList.toggle('active'); // Toggle visibility
+  // Hide the submenu when clicking outside of it
+  document.addEventListener('click', function (e) {
+      if (!submenu.contains(e.target) && !servicesLink.contains(e.target)) {
+          submenu.classList.remove('active'); // Hide submenu
+      }
+  });
 
-            // Stop event propagation to avoid immediate closure
-            e.stopPropagation();
-        });
-
-        // Close the submenu when clicking outside
-        document.addEventListener('click', function (e) {
-            if (!submenu.contains(e.target) && !servicesLink.contains(e.target)) {
-                submenu.classList.remove('active');
-            }
-        });
-
-        // Smooth scroll to "services" section when submenu link is clicked
-        submenu.addEventListener('click', function (e) {
-            const target = e.target.closest('a');
-            if (target && target.getAttribute('href').startsWith('#')) {
-                e.preventDefault();
-                const sectionId = target.getAttribute('href').substring(1);
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    section.scrollIntoView({ behavior: 'smooth' });
-                    submenu.classList.remove('active'); // Optionally close submenu after click
-                }
-            }
-        });
-    });
-
-
-
-    // latest 
-    document.addEventListener("DOMContentLoaded", function () {
-      const servicesLink = document.querySelector('[data-toggle="submenu"]');
-      const submenu = document.querySelector('.services-menu .submenu');
-  
-      // Toggle submenu visibility on click
-      servicesLink.addEventListener('click', function (e) {
-          e.preventDefault(); // Prevent navigation
-          submenu.classList.toggle('active'); // Add or remove "active" class
-  
-          // Stop event propagation to avoid closure
-          e.stopPropagation();
-      });
-  
-      // Close the submenu when clicking outside
-      document.addEventListener('click', function (e) {
-          if (!submenu.contains(e.target) && !servicesLink.contains(e.target)) {
-              submenu.classList.remove('active'); // Remove "active" class
-          }
-      });
-  
-      // Smooth scroll for submenu links
-      submenu.addEventListener('click', function (e) {
+  // Smooth scroll and hide submenu when clicking on a submenu item
+  submenuItems.forEach(item => {
+      item.addEventListener('click', function (e) {
           const target = e.target.closest('a');
           if (target && target.getAttribute('href').startsWith('#')) {
               e.preventDefault();
               const sectionId = target.getAttribute('href').substring(1);
               const section = document.getElementById(sectionId);
               if (section) {
-                  section.scrollIntoView({ behavior: 'smooth' });
-                  submenu.classList.remove('active'); // Close submenu
+                  section.scrollIntoView({ behavior: 'smooth' }); // Smooth scroll
               }
+              submenu.classList.remove('active'); // Hide submenu
           }
       });
   });
-  
+});
+
